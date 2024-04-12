@@ -11,9 +11,24 @@ body {
   
   .header {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     padding: 20px;
+  }
+
+  .border-div{
+    width: 6px;
+    height: 45px ;
+    border: rgb(255, 208, 0);
+    border-radius: 5px;
+    background-color: rgb(255, 208, 0);
+    margin-right: 15px;
+  }
+
+  .filename-div{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
   }
   
   /* .main {
@@ -40,11 +55,14 @@ body {
   }
 
   .Expand-Button{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     background-color: rgba(51, 51, 51, 0.1);
     color: #333333;
     font-size: 16px;
     font-weight: 550;
-    width: 6rem;
+    width: 7rem;
     border: rgba(51, 51, 51, 0.1);
     padding-top: 8px;
     padding-bottom: 8px;
@@ -99,16 +117,78 @@ body {
     border: 2px solid gray;
     height: 600px;
     border-radius: 1rem;
-    
+    overflow-y: auto;
   }
+
+  .page-button{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    padding: 4px;
+  }
+
+  .next-page{
+    background-color: #6b6b6b;
+    color: #ffffff;
+    width: 7rem;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px;
+    border: #6b6b6b;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 1px;
+  }
+
+.details::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 4px; /* Width of the scrollbar */
+    display: none;
+}
+
+/* Style the scrollbar thumb */
+.details::-webkit-scrollbar-thumb {
+    background-color: #000000; /* Black color for the thumb */
+}
+
+/* Style the scrollbar track */
+.details::-webkit-scrollbar-track {
+    background-color: #c5c5c5; /* Gray color for the track */
+}
+
+/* Hide scrollbar buttons and track */
+.details::-webkit-scrollbar-button {
+    display: none;
+}
+
+.details::-webkit-scrollbar:horizontal {
+
+    height: 5px;
+    border: #c5c5c5;
+    border-radius: 4px; /* Height of the horizontal scrollbar */
+}
+
+/* Style the horizontal scrollbar thumb */
+.details::-webkit-scrollbar-thumb:horizontal {
+    background-color: #000000; /* Black color for the thumb */
+}
+
+/* Style the horizontal scrollbar track */
+.details::-webkit-scrollbar-track:horizontal {
+    background-color: #c5c5c5; /* Gray color for the track */
+}
   
   .form-container {
     width: 50%;
+
   }
 
-  .form{
-    padding: 10px;
-  }
+  /* .form{ */
+    /* padding: 10px;  */
+    /* padding-right: 15px;  */
+    /* overflow-y: auto;  */
+    /* overflow-x: hidden; */
+  /* } */
   
   .form-sections{
     padding-bottom: 12px;
@@ -118,15 +198,19 @@ body {
 
   .form-container h3 {
     margin-bottom: 10px;
+    /* padding: 10px; */
     font-size: 20px;
     font-weight: 500;
   }
   
   .form-container .form {
     width: 100%; 
+    /* padding: 10px; */
+    padding-top: 10px;
+    padding-left: 10px;
     height: calc(100% - 40px);
     border: 2px solid gray;
-    height: 542px;
+    height: 530px;
     border-radius: 1rem;
     margin-bottom: 18px;
     overflow-y: scroll;
@@ -170,29 +254,38 @@ body {
   }
 
   .full-input {
-    width: 95%;
+    width: 96.9%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #6b6b6b;
+    border: 2px solid #6b6b6b;
     border-radius: 5px;
+    font-size: 14px;
+    font-weight: 550;
+    color: #000000;
   }
   
   .half-input {
-    width: 100%; /* Adjusted width for two elements side by side */
+    width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #6b6b6b;
+    border: 2px solid #a09f9f;
     border-radius: 5px;
     box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 550;
+    color: #000000;
   }
   
   .double-input {
-    width: 95%;
+    width: 96.9%;
     height: 40px;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #6b6b6b;
+    border: 2px solid #6b6b6b;
     border-radius: 5px; 
+    font-size: 14px;
+    font-weight: 550;
+    color: #000000;
   }
 
   .horizontal-table {
@@ -214,4 +307,40 @@ body {
     box-sizing: border-box;
     min-width: 170px;
   }
-  
+
+  .form::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+    position: absolute; /* Position the scrollbar */
+    top: 0;
+    right: 2px; /* Position the scrollbar 2px to the right */
+    bottom: 0;
+    z-index: 1; /* Ensure scrollbar is on top of content */
+}
+
+/* Style the scrollbar thumb */
+.form::-webkit-scrollbar-thumb {
+    background-color: #000000; /* Black color for the thumb */
+    border-radius: 4px; /* Rounded corners for the thumb */
+}
+
+/* Style the scrollbar track */
+.form::-webkit-scrollbar-track {
+    background-color: #c5c5c5; /* Gray color for the track */
+    border-radius: 4px; /* Rounded corners for the track */
+}
+
+/* Hide scrollbar buttons and track */
+.form::-webkit-scrollbar-button {
+    display: none;
+}
+
+canvas{
+    height: 100%;
+    width: 50%;
+}
+
+/* .highlight-canvas{
+    color: rgb(127, 233, 141) !important;
+    opacity: 100%;
+} */
+

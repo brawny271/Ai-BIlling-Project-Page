@@ -10,234 +10,254 @@
   <body>
     <div class="container">
       <div class="header">
+        <div class="border-div"></div>
         <h1>Invoice Automation</h1>
       </div>
       <div>
         <div class="main">
           <div class="file-info">
-            <h2>FragranceFusion_Invoice_R...pdf</h2>
-            <button class="Expand-Button">Expand</button>
+            <div class="filename-div">
+                <img src="icons/leftArrow.png" alt="" style="width: 26px; height: 26px; padding-right:16px;">
+                <h2>FragranceFusion_Invoice_R...pdf</h2>
+            </div>
+            <button class="Expand-Button"><img src="icons/expand.png" alt="">Expand</button>
           </div>
           <div class="parent-container">
             <div class="button-info">
               <div class="buttons-container">
-                <button class="side-buttons">*</button>
-                <button class="side-buttons">@</button>
-                <button class="side-buttons">+</button>
-                <button class="side-buttons">-</button>
+                <button class="side-buttons"><img src="/icons/panArrow.png" alt="" style="width: 16px; height: 18px;"></button>
+                <button class="side-buttons"><img src="/icons/crop.png" alt=""style="width: 20px; height: 20px;" ></button>
+                <!-- <button class="side-buttons" id="zoomIn">+</button>
+                <button class="side-buttons" id="zoomOut">-</button> -->
               </div>
             </div>
 
             <div class="document-info">
               <h3>invoice document :</h3>
-              <div class="details"></div>
-            </div>
-            <div class="form-container">
-              <h3>Extracted Details</h3>
-              <div class="form">
-                <div class="form-sections">
-                  <h2>general details</h2>
-                  <label for="">IRN number</label>
-                  <input type="text" name="" id="" class="full-input" />
-                  <div class="half-indiv">
-                    <div class="input-lable-container">
-                      <label for="">ACK No.</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">ACK Dated</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                  </div>
-                </div>
-                <div class="form-sections">
-                  <h2>Vendor Details</h2>
-                  <div class="half-indiv">
-                    <div class="input-lable-container">
-                      <label for="">Vendor Name</label>
-                      <input type="text" name="" id="" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">Vendor Ph No.</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                  </div>
-                  <label for="">Vendor Address</label>
-                  <input type="text" class="double-input" />
-                </div>
-                <div class="form-sections">
-                  <h2>Consignee ( Ship To )</h2>
-                  <div class="half-indiv">
-                    <div class="input-lable-container">
-                      <label for="">Consignee Name</label>
-                      <input type="text" name="" id="" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">Phone No.</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                  </div>
-                  <label for="">Consignee Address</label>
-                  <input type="text" class="double-input" />
-                  <div class="half-indiv">
-                    <div></div>
-                    <label for="">GSTIN/UN</label>
-                    <input type="text" class="half-input" />
-                    <div class="input-lable-container">
-                      <label for="">State Name</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">CODE</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                  </div>
-                </div>
-                <div class="form-sections">
-                  <h2>Buyer ( Bill To )</h2>
-                  <div class="half-indiv">
-                    <div class="input-lable-container">
-                      <label for="">Buyer Name</label>
-                      <input type="text" name="" id="" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">Phone No.</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                  </div>
-                  <label for="">Buyer Address</label>
-                  <input type="text" class="double-input" />
-                  <div class="half-indiv">
-                    <div class="input-lable-container">
-                      <label for="">GSTIN/UN</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">State Name</label>
-                      <input type="text" class="half-input" />
-                    </div>
-
-                    <div class="input-lable-container">
-                      <label for="">CODE</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                  </div>
-                </div>
-                <div class="form-sections">
-                  <h2>Invoice Details</h2>
-                  <div class="half-indiv">
-                    <div class="input-lable-container">
-                      <label for="">Invoice No</label>
-                      <input type="text" name="" id="" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">E-Way Bill No.</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">Dated</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">Delivery Note</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">Mode/Term Of Payment</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">Reference No & Date</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                  </div>
-                  <label for="">Other References</label>
-                  <input type="text" class="full-input" />
-                </div>
-                <div class="form-sections">
-                  <h2>Buyer's Order Details</h2>
-                  <div class="half-indiv">
-                    <div class="input-lable-container">
-                      <label for="">Buyer's Order No</label>
-                      <input type="text" name="" id="" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">Dated</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">Dispatch Doc No.</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">Delivery Note</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">Dispatch Through</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">Destination</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                  </div>
-                  <label for="">Terms Of Delivery</label>
-                  <input type="text" class="full-input" />
-                </div>
-                <div>
-                  <h2>ORDER's LIST</h2>
-                  <div class="horizontal-table">
-                    <table class="order-table">
-                      <thead class="">
-                        <tr>
-                          <th class="table-head">Header 1</th>
-                          <td><input type="text" class="half-input" /></td>
-                          <td><input type="text" class="half-input" /></td>
-                          <td><input type="text" class="half-input" /></td>
-                        </tr>
-                      </thead>
-                      <tbody class="table-body">
-                        <tr>
-                          <th class="table-head">Header 2</th>
-                          <td><input type="text" class="half-input" /></td>
-                          <td><input type="text" class="half-input" /></td>
-                          <td><input type="text" class="half-input" /></td>
-                        </tr>
-                        <tr>
-                          <th class="table-head">Header 3</th>
-                          <td><input type="text" class="half-input" /></td>
-                          <td><input type="text" class="half-input" /></td>
-                          <td><input type="text" class="half-input" /></td>
-                        </tr>
-                        <tr >
-                          <th class="table-head">Header 3</th>
-                          <td><input type="text" class="half-input" /></td>
-                          <td><input type="text" class="half-input" /></td>
-                          <td><input type="text" class="half-input" /></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="half-indiv">
-                    <div class="input-lable-container">
-                      <label for="">Total Quantity</label>
-                      <input type="text" name="" id="" class="half-input" />
-                    </div>
-                    <div class="input-lable-container">
-                      <label for="">Total Amount</label>
-                      <input type="text" class="half-input" />
-                    </div>
-                  </div>
-                  <label for="">IRN number</label>
-                  <input type="text" name="" id="" class="full-input" />
+              <div class="details">
+                <div class="image-container">
+                    <img id="imageView" src="" alt="Image Viewer" style=" max-height: 100%;">
                 </div>
               </div>
-              <button class="form-submit">Submit</button>
+              <div class="page-button">
+                <button class="next-page">Next Page</button>
+              </div>
+            </div>
+            <div class="form-container">
+                <h3>Extracted Details</h3>
+                <div class="form">
+                    <!-- General Details -->
+                    <div class="form-sections">
+                        <h2>General Details</h2>
+                        <label for="IRN_number">IRN number</label>
+                        <input type="text" id="invoice_number" class="full-input" />
+                        <div class="half-indiv">
+                            <div class="input-lable-container">
+                                <label for="ACK_No">ACK No.</label>
+                                <input type="text" id="ack_no" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="ACK_Dated">ACK Dated</label>
+                                <input type="text" id="ack_dated" class="half-input" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Vendor Details -->
+                    <div class="form-sections">
+                        <h2>Vendor Details</h2>
+                        <div class="half-indiv">
+                            <div class="input-lable-container">
+                                <label for="Vendor_Name">Vendor Name</label>
+                                <input type="text" id="vendor_name" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="Vendor_Phone">Vendor Ph No.</label>
+                                <input type="text" id="vendor_phone" class="half-input" />
+                            </div>
+                        </div>
+                        <label for="Vendor_Address">Vendor Address</label>
+                        <input type="text" id="vendor_address" class="double-input" />
+                    </div>
+                    <!-- Consignee Details -->
+                    <div class="form-sections">
+                        <h2>Consignee (Ship To)</h2>
+                        <div class="half-indiv">
+                            <div class="input-lable-container">
+                                <label for="Consignee_Name">Consignee Name</label>
+                                <input type="text" id="consignee_name" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="Consignee_Phone">Phone No.</label>
+                                <input type="text" id="consignee_phone" class="half-input" />
+                            </div>
+                        </div>
+                        <label for="Consignee_Address">Consignee Address</label>
+                        <input type="text" id="consignee_address" class="double-input" />
+                        <div class="half-indiv">
+                            <div></div>
+                            <label for="Consignee_GSTIN_UN">GSTIN/UN</label>
+                            <input type="text" id="consignee_un" class="half-input" />
+                            <div class="input-lable-container">
+                                <label for="Consignee_State">State Name</label>
+                                <input type="text" id="consignee_state" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="Consignee_CODE">CODE</label>
+                                <input type="text" id="consignee_code" class="half-input" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Buyer Details -->
+                    <div class="form-sections">
+                        <h2>Buyer (Bill To)</h2>
+                        <div class="half-indiv">
+                            <div class="input-lable-container">
+                                <label for="buyer_name">Buyer Name</label>
+                                <input type="text" id="buyer_name" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="buyer_phone">Phone No.</label>
+                                <input type="text" id="buyer_phone" class="half-input" />
+                            </div>
+                        </div>
+                        <label for="buyer_address">Buyer Address</label>
+                        <input type="text" id="buyer_address" class="double-input" />
+                        <div class="half-indiv">
+                            <div class="input-lable-container">
+                                <label for="buyer_un">GSTIN/UN</label>
+                                <input type="text" id="buyer_un" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="buyer_state">State Name</label>
+                                <input type="text" id="buyer_state" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="buyer_code">CODE</label>
+                                <input type="text" id="buyer_code" class="half-input" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Invoice Details -->
+                    <div class="form-sections">
+                        <h2>Invoice Details</h2>
+                        <div class="half-indiv">
+                            <div class="input-lable-container">
+                                <label for="invoice_no">Invoice No</label>
+                                <input type="text" id="invoice_no" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="eway_bill_no">E-Way Bill No.</label>
+                                <input type="text" id="eway_bill_no" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="invoice_dated">Dated</label>
+                                <input type="text" id="invoice_dated" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="delivery_note">Delivery Note</label>
+                                <input type="text" id="delivery_note" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="payment_mode">Mode/Term Of Payment</label>
+                                <input type="text" id="payment_mode" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="reference_no_date">Reference No & Date</label>
+                                <input type="text" id="reference_no_date" class="half-input" />
+                            </div>
+                        </div>
+                        <label for="other_references">Other References</label>
+                        <input type="text" id="other_references" class="full-input" />
+                    </div>
+                    <!-- Buyer's Order Details -->
+                    <div class="form-sections">
+                        <h2>Buyer's Order Details</h2>
+                        <div class="half-indiv">
+                            <div class="input-lable-container">
+                                <label for="buyers_order_no">Buyer's Order No</label>
+                                <input type="text" id="buyers_order_no" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="buyers_order_dated">Dated</label>
+                                <input type="text" id="buyers_order_dated" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="dispatch_doc_no">Dispatch Doc No.</label>
+                                <input type="text" id="dispatch_doc_no" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="buyers_delivery_note">Delivery Note</label>
+                                <input type="text" id="buyers_delivery_note" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="dispatch_through">Dispatch Through</label>
+                                <input type="text" id="dispatch_through" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="destination">Destination</label>
+                                <input type="text" id="destination" class="half-input" />
+                            </div>
+                        </div>
+                        <label for="terms_if_delivery">Terms Of Delivery</label>
+                        <input type="text" id="terms_of_delivery" class="full-input" />
+                    </div>
+                    <!-- Order's List -->
+                    <div>
+                        <h2>ORDER's LIST</h2>
+                        <div class="horizontal-table">
+                            <table class="order-table">
+                                <thead class="">
+                                    <tr>
+                                        <th class="table-head">Header 1</th>
+                                        <td><input type="text" class="half-input" /></td>
+                                        <td><input type="text" class="half-input" /></td>
+                                        <td><input type="text" class="half-input" /></td>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-body">
+                                    <tr>
+                                        <th class="table-head">Header 2</th>
+                                        <td><input type="text" class="half-input" /></td>
+                                        <td><input type="text" class="half-input" /></td>
+                                        <td><input type="text" class="half-input" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="table-head">Header 3</th>
+                                        <td><input type="text" class="half-input" /></td>
+                                        <td><input type="text" class="half-input" /></td>
+                                        <td><input type="text" class="half-input" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="table-head">Header 3</th>
+                                        <td><input type="text" class="half-input" /></td>
+                                        <td><input type="text" class="half-input" /></td>
+                                        <td><input type="text" class="half-input" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="half-indiv">
+                            <div class="input-lable-container">
+                                <label for="total_quantity">Total Quantity</label>
+                                <input type="text" id="total_quantity" class="half-input" />
+                            </div>
+                            <div class="input-lable-container">
+                                <label for="total_amount">Total Amount</label>
+                                <input type="text" id="total_amount" class="half-input" />
+                            </div>
+                        </div>
+                        <label for="irn_number">IRN number</label>
+                        <input type="text" id="irn_number" class="full-input" />
+                    </div>
+                </div>
+                <button class="form-submit">Submit</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <script src="script.js"></script>
+
   </body>
 </html>

@@ -1,0 +1,81 @@
+{
+    "general_details": {
+      "IRN_number": "12345",
+      "ACK_No": "67890",
+      "ACK_Dated": "2024-04-10"
+    },
+    "vendor_details": {
+      "Vendor_Name": "Vendor ABC",
+      "Vendor_Phone": "1234567890",
+      "Vendor_Address": "123, Vendor Street, City XYZ"
+    },
+    "consignee_details": {
+      "Consignee_Name": "Consignee XYZ",
+      "Consignee_Name_parameters":{          
+        "value": {
+        "x": 6.610703043022038,
+        "y": 34.05929858167039,
+        "width": 30.745015739769133,
+        "height": 1.1130489732572044,
+        "rotation": 0,
+        "text": ["S H Kelkar And Company Ltd.(Raigad)"]
+      }
+    },
+      "Consignee_Phone": "9876543210",
+      "Consignee_Address": "456, Consignee Street, City ABC",
+      "GSTIN_UN": "GST123",
+      "State_Name": "State XYZ",
+      "CODE": "ABC123"
+    },
+    "buyer_details": {
+      "Buyer_Name": "Buyer PQR",
+      "Buyer_Phone": "9876543210",
+      "Buyer_Address": "789, Buyer Street, City PQR",
+      "GSTIN_UN": "GST456",
+      "State_Name": "State PQR",
+      "CODE": "PQR789"
+    },
+    "invoice_details": {
+      "Invoice_No": "INV-001",
+      "EWay_Bill_No": "EWB-001",
+      "Invoice_Dated": "2024-04-10",
+      "Delivery_Note": "DN-001",
+      "Payment_Mode": "Cash",
+      "Reference_No_Date": "REF-001, 2024-04-10",
+      "Other_References": "Other references for invoice"
+    },
+    "buyers_order_details": {
+      "Buyers_Order_No": "BO-001",
+      "Buyers_Order_Dated": "2024-04-10",
+      "Dispatch_Doc_No": "DDN-001",
+      "Buyers_Delivery_Note": "BDN-001",
+      "Dispatch_Through": "Courier",
+      "Destination": "Destination XYZ",
+      "Terms_Of_Delivery": "Terms of delivery"
+    },
+    "orders_list": [
+      {
+        "Header_1": "Data 1",
+        "Header_2": "Data 2",
+        "Header_3": "Data 3"
+      },
+      {
+        "Header_1": "Data 4",
+        "Header_2": "Data 5",
+        "Header_3": "Data 6"
+      },
+      {
+        "Header_1": "Data 7",
+        "Header_2": "Data 8",
+        "Header_3": "Data 9"
+      },
+      {
+        "Header_1": "Data 10",
+        "Header_2": "Data 11",
+        "Header_3": "Data 12"
+      }
+    ],
+    "total_quantity": "100",
+    "total_amount": "5000"
+  }
+  

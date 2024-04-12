@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "page": 1,
+      "image_add": "",
+      "image_details": [
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "g-N0ktw2_-",
+          "value": {
+            "x": 6.610703043022038,
+            "y": 34.05929858167039,
+            "width": 30.745015739769133,
+            "height": 1.1130489732572044
+          },
+          "vendor_name": ["S H Kelkar And Company Ltd.(Raigad)"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "qGsO_xU2NT",
+          "value": {
+            "x": 16.474291710388247,
+            "y": 16.102108479787542,
+            "width": 15.320041972717732,
+            "height": 3.0423338602363543
+          },
+          "vendor_address": ["231, Pratappura, Halol, 389350 Dist Panchmahals"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "Cv7T__RQXn",
+          "value": {
+            "x": 6.505771248688353,
+            "y": 57.65593681472313,
+            "width": 1.0493179433368311,
+            "height": 1.3356587679086473
+          },
+          "vendor_phone": ["8888888888"],
+          "rotation": 0
+        }
+      ]
+    }
+  ]
+}
