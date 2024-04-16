@@ -120,6 +120,11 @@ body {
     overflow-y: auto;
   }
 
+  .image-container{
+    height: 100%;
+    width: 100%;
+  }
+
   .page-button{
     width: 100%;
     display: flex;
@@ -226,6 +231,7 @@ body {
     font-weight: 500;
     border-radius: 6px; 
     color: white;
+    cursor: pointer;
   }
 
   .half-indiv{
@@ -257,11 +263,15 @@ body {
     width: 96.9%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 2px solid #6b6b6b;
+    border: 2px solid #a09f9f;
     border-radius: 5px;
     font-size: 14px;
     font-weight: 550;
     color: #000000;
+  }
+
+  .full-input:focus {
+    border: 2px solid #ffef0d; 
   }
   
   .half-input {
@@ -275,13 +285,17 @@ body {
     font-weight: 550;
     color: #000000;
   }
+
+  .half-input:focus {
+    border: 2px solid #ffef0d; 
+  }
   
   .double-input {
     width: 96.9%;
     height: 40px;
     padding: 10px;
     margin-bottom: 10px;
-    border: 2px solid #6b6b6b;
+    border: 2px solid #a09f9f;
     border-radius: 5px; 
     font-size: 14px;
     font-weight: 550;
@@ -336,7 +350,7 @@ body {
 
 canvas{
     height: 100%;
-    width: 50%;
+    width: 100%;
 }
 
 /* .highlight-canvas{
@@ -344,3 +358,8 @@ canvas{
     opacity: 100%;
 } */
 
+/* .highlight-canvas {
+
+  transition: opacity 0.5s ease; 
+  opacity: 0;
+}  */

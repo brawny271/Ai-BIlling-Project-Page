@@ -8,12 +8,54 @@
           "original_width": 2480,
           "original_height": 3507,
           "image_rotation": 0,
-          "id": "g-N0ktw2_-",
+          "id": "irn_number",
           "value": {
-            "x": 6.610703043022038,
-            "y": 34.05929858167039,
-            "width": 30.745015739769133,
-            "height": 1.1130489732572044
+            "x": 114.505771248688353,
+            "y": 214.65593681472313,
+            "width": 260.745015739769133,
+            "height": 39.1130489732572044
+          },
+          "irn_number": ["88225547164575415"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "ack_number",
+          "value": {
+            "x": 114.505771248688353,
+            "y": 248.65593681472313,
+            "width": 160.745015739769133,
+            "height": 39.1130489732572044
+          },
+          "ack_number": ["16238784571"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "ack_dated",
+          "value": {
+            "x": 114.505771248688353,
+            "y": 272.65593681472313,
+            "width": 160.745015739769133,
+            "height": 39.1130489732572044
+          },
+          "ack_dated": ["28-04-2024"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "vendor_name",
+          "value": {
+            "x": 114.505771248688353,
+            "y": 324.65593681472313,
+            "width": 160.745015739769133,
+            "height": 39.1130489732572044
           },
           "vendor_name": ["S H Kelkar And Company Ltd.(Raigad)"],
           "rotation": 0
@@ -22,12 +64,26 @@
           "original_width": 2480,
           "original_height": 3507,
           "image_rotation": 0,
-          "id": "qGsO_xU2NT",
+          "id": "vendor_name",
           "value": {
-            "x": 16.474291710388247,
-            "y": 16.102108479787542,
-            "width": 15.320041972717732,
-            "height": 3.0423338602363543
+            "x": 114.505771248688353,
+            "y": 324.65593681472313,
+            "width": 160.745015739769133,
+            "height": 39.1130489732572044
+          },
+          "vendor_name": ["S H Kelkar And Company Ltd.(Raigad)"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "vendor_address",
+          "value": {
+            "x": 134.474291710388247,
+            "y": 364.05929858167039,
+            "width": 220.320041972717732,
+            "height": 193.0423338602363543
           },
           "vendor_address": ["231, Pratappura, Halol, 389350 Dist Panchmahals"],
           "rotation": 0
@@ -36,12 +92,12 @@
           "original_width": 2480,
           "original_height": 3507,
           "image_rotation": 0,
-          "id": "Cv7T__RQXn",
+          "id": "vendor_phone",
           "value": {
-            "x": 6.505771248688353,
-            "y": 57.65593681472313,
-            "width": 1.0493179433368311,
-            "height": 1.3356587679086473
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
           },
           "vendor_phone": ["8888888888"],
           "rotation": 0

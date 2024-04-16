@@ -35,9 +35,9 @@
             <div class="document-info">
               <h3>invoice document :</h3>
               <div class="details">
-                <div class="image-container">
-                    <img id="imageView" src="" alt="Image Viewer" style=" max-height: 100%;">
-                </div>
+                <div class="image-container" style="position: relative; width:fit-content;">
+                    <img id="imageView" class="imageCanvas" src="" alt="Image Viewer" style="z-index: 0;max-width: 100%;">
+                  </div>
               </div>
               <div class="page-button">
                 <button class="next-page">Next Page</button>
@@ -49,12 +49,12 @@
                     <!-- General Details -->
                     <div class="form-sections">
                         <h2>General Details</h2>
-                        <label for="IRN_number">IRN number</label>
-                        <input type="text" id="invoice_number" class="full-input" />
+                        <label for="irn_number">IRN number</label>
+                        <input type="text" id="irn_number" class="full-input" />
                         <div class="half-indiv">
                             <div class="input-lable-container">
-                                <label for="ACK_No">ACK No.</label>
-                                <input type="text" id="ack_no" class="half-input" />
+                                <label for="ack_number">ACK No.</label>
+                                <input type="text" id="ack_number" class="half-input" />
                             </div>
                             <div class="input-lable-container">
                                 <label for="ACK_Dated">ACK Dated</label>
