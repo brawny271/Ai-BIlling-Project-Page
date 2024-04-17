@@ -57,21 +57,7 @@
             "width": 160.745015739769133,
             "height": 39.1130489732572044
           },
-          "vendor_name": ["S H Kelkar And Company Ltd.(Raigad)"],
-          "rotation": 0
-        },
-        {
-          "original_width": 2480,
-          "original_height": 3507,
-          "image_rotation": 0,
-          "id": "vendor_name",
-          "value": {
-            "x": 114.505771248688353,
-            "y": 324.65593681472313,
-            "width": 160.745015739769133,
-            "height": 39.1130489732572044
-          },
-          "vendor_name": ["S H Kelkar And Company Ltd.(Raigad)"],
+          "vendor_name": ["Tide Industries"],
           "rotation": 0
         },
         {
@@ -100,6 +86,518 @@
             "height": 24.3356587679086473
           },
           "vendor_phone": ["8888888888"],
+          "rotation": 0
+        },        
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "consignee_address",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "consignee_address": ["Mulund"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "consignee_un",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "consignee_un": ["27AAACS9778G1ZT"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "consignee_state",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "consignee_state": ["Maharashtra"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "consignee_code",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "consignee_code": ["27"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "consignee_name",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "consignee_name": ["S H Kelkar And Company Ltd.(Raigad)"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "consignee_phone",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "consignee_phone": ["8888888888"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "buyer_name",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "buyer_name": ["S H Kelkar And Company Ltd.(Raigad)"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "buyer_phone",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "buyer_phone": ["8888888888"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "buyer_address",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "buyer_address": ["Mulund"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "buyer_un",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "buyer_un": ["27AAACS9778G1ZT"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "buyer_state",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "buyer_state": ["Maharashtra"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "buyer_code",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "buyer_code": ["27"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "invoice_no",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "invoice_no": ["8888888888"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "eway_bill_no",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "eway_bill_no": ["691586466"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "invoice_dated",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "invoice_dated": ["04-04-24"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "delivery_note",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "delivery_note": ["Tide/0021/23-24"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "payment_mode",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "payment_mode": ["NEFT"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "reference_no_date",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "reference_no_date": ["Tide/0021/23-24 & 04-04-24"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "other_references",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "other_references": [""],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "buyers_order_no",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "buyers_order_no": ["456546545454, 457787561351, 45789651361, 45783215846"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "buyers_order_dated",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "buyers_order_dated": ["04-04-24"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "dispatch_doc_no",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "dispatch_doc_no": ["45232984"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "buyers_delivery_note",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "buyers_delivery_note": ["-"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "dispatch_through",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "dispatch_through": ["VN-Trans(india)Ltd"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "destination",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "destination": ["Door Delivery"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "terms_of_delivery",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "terms_of_delivery": ["Paid" ],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "product_no",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "product_no": ["1","2","3","4"],
+          "rotation": 0
+        },        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "description_goods",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "description_goods": ["soap","shapoo","attar","fog"],
+          "rotation": 0
+        },        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "kind_packeges",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "kind_packeges": ["8x25 kg","8x25 kg","8x25 kg","8x25 kg"],
+          "rotation": 0
+        },        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "hsn_sac",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "hsn_sac": ["2914500","2914500","2914500","2914500"],
+          "rotation": 0
+        },        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "quantity",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "quantity": ["200.00 kgs","200.00 kgs","200.00 kgs","200.00 kgs"],
+          "rotation": 0
+        },        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "rate",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "rate": ["1500","1500","1500","1500"],
+          "rotation": 0
+        },        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "per",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "per": ["kgs","kgs","kgs","kgs"],
+          "rotation": 0
+        },        
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "amount",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "amount": ["3,00,000","3,00,000","3,00,000","3,00,000"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "total_quantity",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "total_quantity": ["200.00 kgs"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "total_amount",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "total_amount": ["₹ 3,00,000"],
+          "rotation": 0
+        },
+        {
+          "original_width": 2480,
+          "original_height": 3507,
+          "image_rotation": 0,
+          "id": "amount_in_words",
+          "value": {
+            "x": 44.505771248688353,
+            "y": 95.65593681472313,
+            "width": 225.0493179433368311,
+            "height": 24.3356587679086473
+          },
+          "amount_in_words": ["Three Lack Rupees Only"],
           "rotation": 0
         }
       ]

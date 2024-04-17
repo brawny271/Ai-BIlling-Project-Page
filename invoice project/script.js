@@ -3,17 +3,31 @@ fetch("sample_json.json")
   .then((data) => {
     const imageDetails = data.data[0].image_details;
     console.log(imageDetails, "matchingDetailmatchingDetail");
-
+    
     const coOrdinatesForImage = {};
-
+    
     const inputs = document.querySelectorAll("input[id]");
-    inputs.forEach((input) => {
+    inputs.forEach((input, i) => {
       const key = input.id;
       const matchingDetail = imageDetails.find((detail) =>
         detail.hasOwnProperty(key)
       );
-      if (matchingDetail) {
+      if (matchingDetail && matchingDetail[key].length === 1) {
         input.value = matchingDetail[key][0];
+      } else if (matchingDetail && matchingDetail[key].length > 1) {
+        const values = matchingDetail[key];
+        const parentDiv = input.parentElement; 
+        values.forEach((value, idx) => {
+          if (idx === 0) {
+            input.value = value; 
+          } else {
+            const newInput = document.createElement("input");
+            newInput.type = "text";
+            newInput.value = value;
+            newInput.className = "values product_no";
+            parentDiv.appendChild(newInput);
+          }
+        });
       }
     });
 
@@ -23,15 +37,15 @@ fetch("sample_json.json")
 
     function highlightImageArea(event) {
       const inputId = event.target.id;
-  
+
       const imageView = document.getElementById("imageView");
       const imageContainer = document.querySelector(".image-container");
       const coordinates = getCoordinatesForInputId(inputId, imageDetails);
-  
+
       if (coordinates) {
         const scaleX = imageView.naturalWidth / imageView.offsetWidth;
         const scaleY = imageView.naturalHeight / imageView.offsetHeight;
-  
+
         const relativeX = coordinates.x * scaleX;
         const relativeY = coordinates.y * scaleY;
         const relativeWidth = Math.min(
@@ -42,29 +56,29 @@ fetch("sample_json.json")
           coordinates.height * scaleY,
           imageView.naturalHeight - relativeY
         );
-  
+
         const existingCanvas = document.querySelector(".highlight-canvas");
         if (existingCanvas) {
           existingCanvas.parentNode.removeChild(existingCanvas);
         }
-  
+
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
         canvas.width = imageView.naturalWidth; // Set canvas width to match image natural width
         canvas.height = imageView.naturalHeight; // Set canvas height to match image natural height
         canvas.classList.add("highlight-canvas");
-  
+
         ctx.fillStyle = "rgba(4, 132, 9, 0.1)"; // Light sky blue fill color with opacity
-        ctx.strokeStyle = "rgba(4, 132, 9, 0.8)" // Light blue border color
+        ctx.strokeStyle = "rgba(4, 132, 9, 0.8)"; // Light blue border color
         ctx.strokeRect(relativeX, relativeY, relativeWidth, relativeHeight);
-        ctx.fillRect(relativeX, relativeY, relativeWidth, relativeHeight); 
-  
+        ctx.fillRect(relativeX, relativeY, relativeWidth, relativeHeight);
+
         canvas.style.position = "absolute";
         canvas.style.top = "0";
         canvas.style.left = "0";
         canvas.style.zIndex = "2";
         imageContainer.appendChild(canvas);
-  
+
         // Remove the canvas after 2 seconds
         setTimeout(() => {
           canvas.classList.add("show"); // Add 'show' class to trigger transition
@@ -77,8 +91,9 @@ fetch("sample_json.json")
       }
     }
 
-    document.getElementById("imageView").addEventListener("click", highlightImageArea);
-  
+    document
+      .getElementById("imageView")
+      .addEventListener("click", highlightImageArea);
 
     function getCoordinatesForInputId(inputId, imageDetails) {
       console.log(inputId, "matchingDetailmatchingDetail");
@@ -103,6 +118,35 @@ document.addEventListener("DOMContentLoaded", function () {
   changeImage(currentIndex);
 });
 
+let isDragging = false;
+let startX;
+let startScrollLeft;
+
+function startDragging(event) {
+  isDragging = true;
+  startX = event.clientX;
+  startScrollLeft = event.target.scrollLeft;
+
+  document.addEventListener("mousemove", drag);
+  document.addEventListener("mouseup", stopDragging);
+}
+
+function drag(event) {
+  if (!isDragging) return;
+
+  const delta = startX - event.clientX;
+  const newScrollLeft = startScrollLeft + delta;
+
+  requestAnimationFrame(() => {
+    event.target.scrollLeft = newScrollLeft;
+  });
+}
+
+function stopDragging() {
+  isDragging = false;
+  document.removeEventListener("mousemove", drag);
+  document.removeEventListener("mouseup", stopDragging);
+}
 // document.addEventListener('DOMContentLoaded', function() {
 //     const imageContainer = document.getElementById('imageContainer');
 //     const imageView = document.getElementById('imageView');

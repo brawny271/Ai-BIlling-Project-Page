@@ -205,7 +205,7 @@
                     <div>
                         <h2>ORDER's LIST</h2>
                         <div class="horizontal-table">
-                            <table class="order-table">
+                            <!-- <table class="order-table">
                                 <thead class="">
                                     <tr>
                                         <th class="table-head">Header 1</th>
@@ -234,8 +234,46 @@
                                         <td><input type="text" class="half-input" /></td>
                                     </tr>
                                 </tbody>
-                            </table>
-                        </div>
+                            </table> -->
+
+                            <div class="table-container">
+                                <div class="all-headers">
+                                    <span id="product_no" class="headers">Product Number</span>
+                                    <span class="headers">Description Of Goods</span>
+                                    <span class="headers">No. And Kind of Packeges</span>
+                                    <span class="headers">HSN/SAC</span>
+                                    <span class="headers">Quantity</span>
+                                    <span class="headers">Rate</span>
+                                    <span class="headers">Per</span>
+                                    <span class="headers">Amount</span>
+                                </div>
+                                <div class="all-tableval" onmousedown="startDragging(event)">
+                                    <div class="val-div">
+                                        <input type="text" id="product_no" class="values product_no"/>
+                                    </div>
+                                    <div class="val-div">
+                                        <input id="description_goods" type="text" class="values description_goods"/>
+                                    </div>
+                                    <div class="val-div">
+                                        <input id="kind_packeges" type="text" class="values kind_packeges"/>
+                                    </div>
+                                    <div class="val-div">
+                                        <input id="hsn_sac" type="text" class="values hsn_sac"/>
+                                    </div>
+                                    <div class="val-div">
+                                        <input id="quantity" type="text" class="values quantity"/>
+                                    </div>
+                                    <div class="val-div">
+                                        <input id="rate" type="text" class="values rate"/>
+                                    </div>
+                                    <div class="val-div">
+                                        <input id="per" type="text" class="values per"/>
+                                    </div>
+                                    <div class="val-div">
+                                        <input id="amount" type="text" class="values amount"/>
+                                    </div>
+                                </div>
+                            </div>
                         <div class="half-indiv">
                             <div class="input-lable-container">
                                 <label for="total_quantity">Total Quantity</label>
@@ -246,12 +284,13 @@
                                 <input type="text" id="total_amount" class="half-input" />
                             </div>
                         </div>
-                        <label for="irn_number">IRN number</label>
-                        <input type="text" id="irn_number" class="full-input" />
+                        <label for="amount_in_words">IRN number</label>
+                        <input type="text" id="amount_in_words" class="full-input" />
                     </div>
                 </div>
-                <button class="form-submit">Submit</button>
+                
             </div>
+            <button class="form-submit">Submit</button>
           </div>
         </div>
       </div>
