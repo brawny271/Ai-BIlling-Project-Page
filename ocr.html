@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OCR</title>
+    <link rel="stylesheet" href="ocrStyle.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="page-title">
+        <div class="border-left"></div>
+        <h2 class="lableText">Security Check</h2>
+      </div>
+      <div class="file-title">
+        <div class="title-container">
+          <img
+            src="/icons/leftArrow.png"
+            alt=""
+            style="
+              width: 20px;
+              height: 20px;
+              padding-right: 16px;
+              padding-left: 16px;
+            "
+          />
+          <div class="title-content">
+            <h3 class="text-title">PO Number</h3>
+            <!-- <span style="height: 1px; border: 3px solid gray; border-radius: 4px;"></span> -->
+            <h3 class="text-title">Vendor Name</h3>
+          </div>
+        </div>
+      </div>
+      <div class="order-details">
+        <div class="po-detail">
+          <div class="detail-content">
+            <h5>PO No:</h5>
+            <h5>-</h5>
+          </div>
+          <div class="detail-content">
+            <h5>Invoice No</h5>
+            <h5>-</h5>
+          </div>
+          <div class="detail-content">
+            <h5>Date</h5>
+            <h5>-</h5>
+          </div>
+        </div>
+        <div class="vendor-detail">
+          <div class="vendor-name">
+            <h5>vendor name</h5>
+            <h5>-</h5>
+          </div>
+          <div class="vendor-add">
+            <h5>vendor Address</h5>
+            <h5>-</h5>
+          </div>
+        </div>
+      </div>
+      <div class="vehical-detail">
+        <div class="vehicle-detail-div">
+            <label for="vehicle-lable">Transport Vehicle Detail</label>
+            <input type="text" class="vehical-detailinput">
+        </div>
+        <div class="vehicle-detail-div">
+            <label for="vehicle-lable">GRN No</label>
+            <p class="vendor-address"> - </p>
+        </div>
+      </div>
+      <div class="materialinfo-table">
+        <!-- <div>
+            <h5>Materials List</h5>
+        </div> -->
+        <div class="main-table"></div>
+      </div>
+      <div class="Submit-btn">
+        <button class="submitform-btn">submit</button>
+      </div>
+    </div>
+  </body>
+</html>
