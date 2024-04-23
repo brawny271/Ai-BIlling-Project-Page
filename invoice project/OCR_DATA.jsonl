@@ -1,0 +1,156 @@
+
+[
+    {
+        "page" : 1,
+        "image_dimensions" : ["w","h"],
+        "content" : {
+            "irn_number" : {
+                "id" : "irn_number",
+                "value": "irn_number here",
+                "bbox" : ["x","y","w","h"]
+            },
+            "ack_number" : {
+                "id" : "ack_number",
+                "value": "*ack_number",
+                "bbox" : ["x","y","w","h"]
+            },
+            "ack_dated" : {
+                "id" : "ack_number",
+                "value": "*ack_dated",
+                "bbox" : ["x","y","w","h"]
+            },
+            "vendor_gst" : {
+                "value": "*vendor_gst",
+                "bbox" : ["x","y","w","h"]
+            },
+            "bill_to_gst" : {
+                "value": "*bill_to_gst",
+                "bbox" : ["x","y","w","h"]
+            },
+            "ship_to_gst" : {
+                "value": "*ship_to_gst",
+                "bbox" : ["x","y","w","h"]
+            },
+            "items_count" : {
+                "value": "*items_count",
+                "bbox" : ["x","y","w","h"]
+            },
+            "total_cgst_percent" : {
+                "value": "*CGST %",
+                "bbox" : ["x","y","w","h"]
+            },
+            "total_cgst_price" : {
+                "value": "*CGST Price",
+                "bbox" : ["x","y","w","h"]
+            },
+            "total_sgst_percent" : {
+                "value": "*SGST %",
+                "bbox" : ["x","y","w","h"]
+            },
+            "total_sgst_price" : {
+                "value": "*SGST Price",
+                "bbox" : ["x","y","w","h"]
+            },
+            "total_igst_percent" : {
+                "value": "*IGST %",
+                "bbox" : ["x","y","w","h"]
+            },
+            "total_igst_price" : {
+                "value": "*IGST Price",
+                "bbox" : ["x","y","w","h"]
+            },
+            "total_tax_ampunt" : {
+                "value": "*Total Tax Amount",
+                "bbox" : ["x","y","w","h"]
+            },
+            "basic_amount" : {
+                "value": "*Basic Total Amount",
+                "bbox" : ["x","y","w","h"]
+            },
+            "grand_total_numerics" : {
+                "value": "*Grand Total/Total Amount",
+                "bbox" : ["x","y","w","h"]
+            },
+            "items" : [
+                {   
+                    "no" : {
+                        "value" : "*Line Item Number here",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "description": {
+                        "value" : "*item_description here",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "hsn_code": {
+                        "value" : "*item_hsn_code here",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "qty": {
+                        "value" : "*item_qty here",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "unit_price": {
+                        "value" : "*item_unit_price here",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "unit_of_measure": {
+                        "value" : "*Unit Measure, this can be kg, bottles, gms, etc",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "gst_rate": {
+                        "value" : "*item_gst_rate here",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "gst_price": {
+                        "value" : "*item_gst_price here",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "cgst_rate": {
+                        "value" : "*item_cgst_rate here",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "cgst_price": {
+                        "value" : "*item_cgst_price here",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "sgst_rate": {
+                        "value" : "*item_sgst_rate here",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "sgst_price": {
+                        "value" : "*item_sgst_price here",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "igst_rate": {
+                        "value" : "*item_igst_rate here",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "igst_price": {
+                        "value" : "*item_igst_price here",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "amount": {
+                        "value" : "*item_amount here",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "total_tax_item": {
+                        "value" : "*item_amount here",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "total_amount" : {
+                        "value" : "*This will be the amount + total GST rate",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "freight_charges": {
+                        "value" : "*This will be the freight_charges",
+                        "bbox" : ["x","y","w","h"]
+                    },
+                    "custom_duty_charges": {
+                        "value" : "*Custom_duty_charges will be for import invoices only",
+                            "bbox" : ["x","y","w","h"]
+                    }
+                }
+            ]
+        }
+    }
+]

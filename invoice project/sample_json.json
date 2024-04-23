@@ -2,7 +2,9 @@
   "data": [
     {
       "page": 1,
-      "image_add": "",
+      "image_link": "",
+      "image_width" : 2480,
+      "image_hight" : 3507,
       "image_details": [
         {
           "original_width": 2480,

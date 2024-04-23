@@ -1,107 +1,179 @@
-fetch("sample_json.json")
-  .then((response) => response.json())
-  .then((data) => {
-    const imageDetails = data.data[0].image_details;
-    console.log(imageDetails, "matchingDetailmatchingDetail");
-    
-    const coOrdinatesForImage = {};
-    
-    const inputs = document.querySelectorAll("input[id]");
-    inputs.forEach((input, i) => {
-      const key = input.id;
-      const matchingDetail = imageDetails.find((detail) =>
-        detail.hasOwnProperty(key)
-      );
-      if (matchingDetail && matchingDetail[key].length === 1) {
-        input.value = matchingDetail[key][0];
-      } else if (matchingDetail && matchingDetail[key].length > 1) {
-        const values = matchingDetail[key];
-        const parentDiv = input.parentElement; 
-        values.forEach((value, idx) => {
-          if (idx === 0) {
-            input.value = value; 
-          } else {
-            const newInput = document.createElement("input");
-            newInput.type = "text";
-            newInput.value = value;
-            newInput.className = "values product_no";
-            parentDiv.appendChild(newInput);
-          }
-        });
+document.addEventListener("DOMContentLoaded", function () {
+  fetchData();
+});
+
+function fetchData() {
+  fetch(`http://172.16.12.21:8000/test/invoice_data?invoice_file_id=1&page=1`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const pageData = data?.ocr_result;
+      const imageDimensions = pageData?.image_dimensions;
+      const content = pageData?.content;
+
+      const imageWidth = imageDimensions ? imageDimensions[0] : 0;
+      const imageHeight = imageDimensions ? imageDimensions[1] : 0;
+
+      const inputs = document.querySelectorAll("input[id]");
+      inputs.forEach((input) => {
+        const key = input.id;
+        const field = content[key];
+        if (field) {
+          input.value = field.value;
+          input.dataset.bbox = JSON.stringify(field.bbox);
+          input.addEventListener("click", highlightImageAreaWithTimeout);
+        }
+      });
+
+      let boundingBoxesVisible = false; 
+
+      const highlightAllBoundingBoxes = () => {
+        if (boundingBoxesVisible) {
+          removeBoundingBoxes();
+          boundingBoxesVisible = false;
+        } else {
+          inputs.forEach((input) => {
+            const bbox = input.dataset.bbox;
+            if (bbox) {
+              highlightImageArea({ target: input }, false); 
+            }
+          });
+          boundingBoxesVisible = true;
+        }
+      };
+
+      function highlightImageAreaWithTimeout(event) {
+        highlightImageArea(event, true);
       }
-    });
 
-    inputs.forEach((input) => {
-      input.addEventListener("click", highlightImageArea);
-    });
+      function highlightImageArea(event, applyTimeout) {
+        const input = event.target;
+        const bbox = input.dataset.bbox;
 
-    function highlightImageArea(event) {
-      const inputId = event.target.id;
+        const imageView = document.getElementById("imageView");
+        const imageContainer = document.querySelector(".image-container");
 
-      const imageView = document.getElementById("imageView");
-      const imageContainer = document.querySelector(".image-container");
-      const coordinates = getCoordinatesForInputId(inputId, imageDetails);
+        const bboxObj = JSON.parse(bbox);
 
-      if (coordinates) {
-        const scaleX = imageView.naturalWidth / imageView.offsetWidth;
-        const scaleY = imageView.naturalHeight / imageView.offsetHeight;
+        const x = bboxObj.x;
+        const y = bboxObj.y;
+        const w = bboxObj.w;
+        const h = bboxObj.h;
 
-        const relativeX = coordinates.x * scaleX;
-        const relativeY = coordinates.y * scaleY;
-        const relativeWidth = Math.min(
-          coordinates.width * scaleX,
-          imageView.naturalWidth - relativeX
+        const existingCanvas = document.querySelector(
+          `.highlight-canvas-${input.id}`
         );
-        const relativeHeight = Math.min(
-          coordinates.height * scaleY,
-          imageView.naturalHeight - relativeY
-        );
-
-        const existingCanvas = document.querySelector(".highlight-canvas");
         if (existingCanvas) {
           existingCanvas.parentNode.removeChild(existingCanvas);
         }
 
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
-        canvas.width = imageView.naturalWidth; // Set canvas width to match image natural width
-        canvas.height = imageView.naturalHeight; // Set canvas height to match image natural height
-        canvas.classList.add("highlight-canvas");
 
-        ctx.fillStyle = "rgba(4, 132, 9, 0.1)"; // Light sky blue fill color with opacity
-        ctx.strokeStyle = "rgba(4, 132, 9, 0.8)"; // Light blue border color
-        ctx.strokeRect(relativeX, relativeY, relativeWidth, relativeHeight);
-        ctx.fillRect(relativeX, relativeY, relativeWidth, relativeHeight);
+        canvas.width = imageWidth;
+        canvas.height = imageHeight;
+        canvas.classList.add(`highlight-canvas-${input.id}`);
+
+        ctx.fillStyle = "rgba(4, 132, 9, 0.1)";
+        ctx.strokeStyle = "rgba(4, 132, 9, 0.8)";
+        ctx.strokeRect(x, y, w, h);
+        ctx.fillRect(x, y, w, h);
 
         canvas.style.position = "absolute";
         canvas.style.top = "0";
         canvas.style.left = "0";
         canvas.style.zIndex = "2";
+
         imageContainer.appendChild(canvas);
 
-        // Remove the canvas after 2 seconds
-        setTimeout(() => {
-          canvas.classList.add("show"); // Add 'show' class to trigger transition
+        canvas.addEventListener("click", () => {
+          const targetInput = document.getElementById(input.id);
+          targetInput.focus();
+        });
+
+        if (applyTimeout) {
           setTimeout(() => {
-            if (canvas.parentNode === imageContainer) {
-              imageContainer.removeChild(canvas);
-            }
-          }, 500); // Wait for transition to finish before removing the canvas
-        }, 1500);
+            canvas.classList.add("show");
+            setTimeout(() => {
+              if (canvas.parentNode === imageContainer) {
+                imageContainer.removeChild(canvas);
+              }
+            }, 500);
+          }, 1500);
+        }
       }
-    }
+      function removeBoundingBoxes() {
+        const highlightCanvases = document.querySelectorAll(
+          "[class^='highlight-canvas-']"
+        );
+        highlightCanvases.forEach((canvas) => {
+          canvas.parentNode.removeChild(canvas);
+        });
+      }
+      const button = document.querySelector(".side-buttons");
+      button.addEventListener("click", highlightAllBoundingBoxes);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}
 
-    document
-      .getElementById("imageView")
-      .addEventListener("click", highlightImageArea);
+// ***** submit Form Functionality ******
 
-    function getCoordinatesForInputId(inputId, imageDetails) {
-      console.log(inputId, "matchingDetailmatchingDetail");
-      const imageDetail = imageDetails.find((detail) => detail.id === inputId);
-      return imageDetail ? imageDetail.value : null;
-    }
+document.addEventListener("DOMContentLoaded", function () {
+  fetchData();
+
+  const submitButton = document.querySelector(".submitform-btn");
+  console.log(submitButton);
+  if (submitButton) {
+    submitButton.addEventListener("click", submitForm);
+  }
+});
+
+function submitForm() {
+  console.log("Submit button clicked");
+  const inputs = document.querySelectorAll("input[id]");
+  const updatedData = {};
+
+  inputs.forEach((input) => {
+    const key = input.id;
+    const value = input.value;
+    updatedData[key] = value;
+  });
+
+  console.log("Updated data:", updatedData);
+
+  sendData(updatedData);
+}
+
+function sendData(data) {
+  console.log("Sending data:", data);
+  fetch(`http://172.16.12.21:8000/test/submit_data`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
   })
-  .catch((error) => console.error("Error fetching data:", error));
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((responseData) => {
+      console.log("Data submitted successfully:", responseData);
+    })
+    .catch((error) => {
+      console.error("Error submitting data:", error);
+    });
+}
+
+//***** Image render functionality *****
 
 const images = ["page-0001.jpg"];
 
@@ -142,97 +214,61 @@ function drag(event) {
   });
 }
 
-function stopDragging() {
-  isDragging = false;
-  document.removeEventListener("mousemove", drag);
-  document.removeEventListener("mouseup", stopDragging);
-}
-// document.addEventListener('DOMContentLoaded', function() {
-//     const imageContainer = document.getElementById('imageContainer');
-//     const imageView = document.getElementById('imageView');
-//     const zoomInButton = document.getElementById('zoomIn');
-//     const zoomOutButton = document.getElementById('zoomOut');
+document.addEventListener("DOMContentLoaded", function () {
+  const imageView = document.getElementById("imageView");
+  const zoomInButton = document.getElementById("zoomIn");
+  const zoomOutButton = document.getElementById("zoomOut");
+  const imageContainer = document.querySelector(".image-container");
 
-//     let scaleFactor = 1;
+  let scaleFactor = 1;
+  let isScrolling = false;
+  let startX, startScrollLeft;
 
-//     // Zoom in functionality
-//     zoomInButton.addEventListener('click', function() {
-//         scaleFactor += 0.1;
-//         updateImageSize();
-//     });
+  zoomInButton.addEventListener("click", function () {
+    scaleFactor += 0.1;
+    updateImageSize();
+  });
 
-//     // Zoom out functionality
-//     zoomOutButton.addEventListener('click', function() {
-//         scaleFactor -= 0.1;
-//         updateImageSize();
-//     });
+  zoomOutButton.addEventListener("click", function () {
+    if (scaleFactor > 1) {
+      scaleFactor -= 0.1;
+      updateImageSize();
+    }
+  });
 
-//     // Function to update image size based on scale factor
-//     function updateImageSize() {
-//         imageView.style.transform = `scale(${scaleFactor})`;
-//     }
-// });
+  function updateImageSize() {
+    scaleFactor = Math.max(1, scaleFactor);
 
-// Get all input fields in the form
+    imageView.style.transform = `scale(${scaleFactor})`;
 
-// const inputFields = document.querySelectorAll(".form input");
+    if (scaleFactor > 1) {
+      imageContainer.classList.add("zoomed-in");
+      imageContainer.addEventListener("mousedown", startScrolling);
+    } else {
+      imageContainer.classList.remove("zoomed-in");
+      imageContainer.removeEventListener("mousedown", startScrolling);
+    }
+  }
 
-// inputFields.forEach((input) => {
-//   input.addEventListener("click", highlightImageArea);
-// });
+  function startScrolling(e) {
+    isScrolling = true;
+    startX = e.clientX;
+    startScrollLeft = imageContainer.scrollLeft;
+    e.preventDefault();
+    document.addEventListener("mousemove", handleScrolling);
+    document.addEventListener("mouseup", stopScrolling);
+  }
 
-// function highlightImageArea(event) {
-//   const inputId = event.target.id;
+  function handleScrolling(e) {
+    if (isScrolling) {
+      let deltaX = e.clientX - startX;
+      imageContainer.scrollLeft = startScrollLeft - deltaX;
+    }
+  }
 
-//   const imageView = document.getElementById("imageView");
-//   const imageContainer = document.querySelector(".image-container");
-//   const rect = imageView.getBoundingClientRect();
-//   const coordinates = getCoordinatesForInputId(inputId);
-
-//   const scaleX = imageView.naturalWidth / imageView.offsetWidth;
-//   const scaleY = imageView.naturalHeight / imageView.offsetHeight;
-
-//   const relativeX = coordinates.x * scaleX;
-//   const relativeY = coordinates.y * scaleY;
-//   const relativeWidth = coordinates.width * scaleX;
-//   const relativeHeight = coordinates.height * scaleY;
-
-//   const existingCanvas = document.querySelector(".highlight-canvas");
-//   if (existingCanvas) {
-//     existingCanvas.parentNode.removeChild(existingCanvas);
-//   }
-
-//   const canvas = document.createElement("canvas");
-//   const ctx = canvas.getContext("2d");
-//   canvas.width = imageContainer.offsetWidth;
-//   canvas.height = imageContainer.offsetHeight;
-//   canvas.classList.add("highlight-canvas");
-//   canvas.style.backgroundColor =
-//     getComputedStyle(imageContainer).backgroundColor;
-
-//   ctx.strokeStyle = "red";
-
-//   ctx.strokeRect(relativeX, relativeY, relativeWidth, relativeHeight);
-
-//   canvas.style.position = "absolute";
-//   canvas.style.top = "0";
-//   canvas.style.left = "0";
-//   canvas.style.zIndex = "100";
-
-//   imageContainer.appendChild(canvas);
-//   setTimeout(() => {
-//     if (canvas.parentNode === imageContainer) {
-//       imageContainer.removeChild(canvas);
-//     }
-//   }, 2000);
-// }
-
-// function getCoordinatesForInputId(inputId) {
-
-//   return {
-//     x: 110,
-//     y: 350,
-//     width: 140,
-//     height: 50,
-//   };
-// }
+  function stopScrolling() {
+    isScrolling = false;
+    document.removeEventListener("mousemove", handleScrolling);
+    document.removeEventListener("mouseup", stopScrolling);
+  }
+});

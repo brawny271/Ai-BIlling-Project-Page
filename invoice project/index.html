@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -17,31 +18,32 @@
         <div class="main">
           <div class="file-info">
             <div class="filename-div">
-                <img src="icons/leftArrow.png" alt="" style="width: 26px; height: 26px; padding-right:16px;">
+                <img src="icons/leftArrow.png" alt="" style="width: 22px; height: 22px; padding-right:16px;">
                 <h2>FragranceFusion_Invoice_R...pdf</h2>
             </div>
-            <button class="Expand-Button"><img src="icons/expand.png" alt="">Expand</button>
+            <!-- <button class="Expand-Button"><img src="icons/expand.png" alt="">Expand</button> -->
           </div>
           <div class="parent-container">
             <div class="button-info">
               <div class="buttons-container">
-                <button class="side-buttons"><img src="/icons/panArrow.png" alt="" style="width: 16px; height: 18px;"></button>
+                <button class="side-buttons"><img src="/icons/cursor.png" alt="" style="width: 20px; height: 20px;"></button>
                 <button class="side-buttons"><img src="/icons/crop.png" alt=""style="width: 20px; height: 20px;" ></button>
-                <!-- <button class="side-buttons" id="zoomIn">+</button>
-                <button class="side-buttons" id="zoomOut">-</button> -->
+                <button class="side-buttons" id="zoomIn"><img src="/icons/ZoomIn.png" alt="" style="width: 20px; height: 20px;"></button>
+                <button class="side-buttons" id="zoomOut"><img src="/icons/ZoomOut.png" alt="" style="width: 20px; height: 20px;"></button> 
+              </div>
+              <div class="pagging-buttons">
+                <button class="page-button"><img src="/icons/Up.png" alt=""></button>
+                <button class="page-button"><img src="/icons/Down.png" alt=""></button>
               </div>
             </div>
 
             <div class="document-info">
               <h3>invoice document :</h3>
               <div class="details">
-                <div class="image-container" style="position: relative; width:fit-content;">
+                <div class="image-container" style="position: relative;">
                     <img id="imageView" class="imageCanvas" src="" alt="Image Viewer" style="z-index: 0;max-width: 100%;">
-                  </div>
-              </div>
-              <div class="page-button">
-                <button class="next-page">Next Page</button>
-              </div>
+                </div>
+            </div>
             </div>
             <div class="form-container">
                 <h3>Extracted Details</h3>
@@ -49,16 +51,16 @@
                     <!-- General Details -->
                     <div class="form-sections">
                         <h2>General Details</h2>
-                        <label for="irn_number">IRN number</label>
-                        <input type="text" id="irn_number" class="full-input" />
+                        <label for="invoice_number">IRN number</label>
+                        <input type="text" id="invoice_number" class="full-input" />
                         <div class="half-indiv">
                             <div class="input-lable-container">
                                 <label for="ack_number">ACK No.</label>
                                 <input type="text" id="ack_number" class="half-input" />
                             </div>
                             <div class="input-lable-container">
-                                <label for="ACK_Dated">ACK Dated</label>
-                                <input type="text" id="ack_dated" class="half-input" />
+                                <label for="invoice_date">ACK Dated</label>
+                                <input type="text" id="invoice_date" class="half-input" />
                             </div>
                         </div>
                     </div>
@@ -95,8 +97,8 @@
                         <input type="text" id="consignee_address" class="double-input" />
                         <div class="half-indiv">
                             <div></div>
-                            <label for="Consignee_GSTIN_UN">GSTIN/UN</label>
-                            <input type="text" id="consignee_un" class="half-input" />
+                            <label for="vendor_gst">GSTIN/UN</label>
+                            <input type="text" id="vendor_gst" class="half-input" />
                             <div class="input-lable-container">
                                 <label for="Consignee_State">State Name</label>
                                 <input type="text" id="consignee_state" class="half-input" />
@@ -124,8 +126,8 @@
                         <input type="text" id="buyer_address" class="double-input" />
                         <div class="half-indiv">
                             <div class="input-lable-container">
-                                <label for="buyer_un">GSTIN/UN</label>
-                                <input type="text" id="buyer_un" class="half-input" />
+                                <label for="bill_to_gst">GSTIN/UN</label>
+                                <input type="text" id="bill_to_gst" class="half-input" />
                             </div>
                             <div class="input-lable-container">
                                 <label for="buyer_state">State Name</label>
@@ -236,61 +238,61 @@
                                 </tbody>
                             </table> -->
 
-                            <div class="table-container">
-                                <div class="all-headers">
-                                    <span id="product_no" class="headers">Product Number</span>
-                                    <span class="headers">Description Of Goods</span>
-                                    <span class="headers">No. And Kind of Packeges</span>
-                                    <span class="headers">HSN/SAC</span>
-                                    <span class="headers">Quantity</span>
-                                    <span class="headers">Rate</span>
-                                    <span class="headers">Per</span>
-                                    <span class="headers">Amount</span>
+                                <div class="table-container">
+                                    <div class="all-headers">
+                                        <span id="product_no" class="headers">Product Number</span>
+                                        <span class="headers">Description Of Goods</span>
+                                        <span class="headers">No. And Kind of Packeges</span>
+                                        <span class="headers">HSN/SAC</span>
+                                        <span class="headers">Quantity</span>
+                                        <span class="headers">Rate</span>
+                                        <span class="headers">Per</span>
+                                        <span id="" class="headers">Amount</span>
+                                    </div>
+                                    <div class="all-tableval" onmousedown="startDragging(event)">
+                                        <div class="val-div">
+                                            <input type="text" id="product_no" class="values product_no"/>
+                                        </div>
+                                        <div class="val-div">
+                                            <input id="description_goods" type="text" class="values description_goods"/>
+                                        </div>
+                                        <div class="val-div">
+                                            <input id="kind_packeges" type="text" class="values kind_packeges"/>
+                                        </div>
+                                        <div class="val-div">
+                                            <input id="hsn_sac" type="text" class="values hsn_sac"/>
+                                        </div>
+                                        <div class="val-div">
+                                            <input id="quantity" type="text" class="values quantity"/>
+                                        </div>
+                                        <div class="val-div">
+                                            <input id="rate" type="text" class="values rate"/>
+                                        </div>
+                                        <div class="val-div">
+                                            <input id="per" type="text" class="values per"/>
+                                        </div>
+                                        <div class="val-div">
+                                            <input id="item_amount" type="text" class="values amount"/>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="all-tableval" onmousedown="startDragging(event)">
-                                    <div class="val-div">
-                                        <input type="text" id="product_no" class="values product_no"/>
-                                    </div>
-                                    <div class="val-div">
-                                        <input id="description_goods" type="text" class="values description_goods"/>
-                                    </div>
-                                    <div class="val-div">
-                                        <input id="kind_packeges" type="text" class="values kind_packeges"/>
-                                    </div>
-                                    <div class="val-div">
-                                        <input id="hsn_sac" type="text" class="values hsn_sac"/>
-                                    </div>
-                                    <div class="val-div">
-                                        <input id="quantity" type="text" class="values quantity"/>
-                                    </div>
-                                    <div class="val-div">
-                                        <input id="rate" type="text" class="values rate"/>
-                                    </div>
-                                    <div class="val-div">
-                                        <input id="per" type="text" class="values per"/>
-                                    </div>
-                                    <div class="val-div">
-                                        <input id="amount" type="text" class="values amount"/>
-                                    </div>
-                                </div>
-                            </div>
                         <div class="half-indiv">
                             <div class="input-lable-container">
-                                <label for="total_quantity">Total Quantity</label>
-                                <input type="text" id="total_quantity" class="half-input" />
+                                <label for="item_qty">Total Quantity</label>
+                                <input type="text" id="item_qty" class="half-input" />
                             </div>
                             <div class="input-lable-container">
-                                <label for="total_amount">Total Amount</label>
-                                <input type="text" id="total_amount" class="half-input" />
+                                <label for="grand_total">Total Amount</label>
+                                <input type="text" id="grand_total" class="half-input" />
                             </div>
                         </div>
-                        <label for="amount_in_words">IRN number</label>
+                        <label for="amount_in_words">Amount in Words</label>
                         <input type="text" id="amount_in_words" class="full-input" />
                     </div>
                 </div>
                 
             </div>
-            <button class="form-submit">Submit</button>
+            <button class="form-submit">Next</button>
           </div>
         </div>
       </div>
