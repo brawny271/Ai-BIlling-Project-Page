@@ -1,252 +1,213 @@
-// fetch("sample_json.json")
-//   .then((response) => response.json())
-//   .then((data) => {
-//     const imageDetails = data.data[0].image_details;
-//     const imageWidth = data.data[0].image_width;
-//     const imageHeight = data.data[0].image_hight;
-
-//     const coOrdinatesForImage = {};
-
-//     const inputs = document.querySelectorAll("input[id]");
-//     inputs.forEach((input, i) => {
-//       const key = input.id;
-//       const matchingDetail = imageDetails.find((detail) =>
-//         detail.hasOwnProperty(key)
-//       );
-//       if (matchingDetail && matchingDetail[key].length === 1) {
-//         input.value = matchingDetail[key][0];
-//       } else if (matchingDetail && matchingDetail[key].length > 1) {
-//         const values = matchingDetail[key];
-//         const parentDiv = input.parentElement;
-//         values.forEach((value, idx) => {
-//           if (idx === 0) {
-//             input.value = value;
-//           } else {
-//             const newInput = document.createElement("input");
-//             newInput.type = "text";
-//             newInput.value = value;
-//             newInput.className = "values product_no";
-//             parentDiv.appendChild(newInput);
-//           }
-//         });
-//       }
-//     });
-
-//     inputs.forEach((input) => {
-//       input.addEventListener("click", highlightImageArea);
-//     }); 
-
-//     function highlightImageArea(event) {
-//       const inputId = event.target.id;
-
-//       const imageView = document.getElementById("imageView");
-//       const imageContainer = document.querySelector(".image-container");
-//       const coordinates = getCoordinatesForInputId(inputId, imageDetails);
-
-//       if (coordinates) {
-//         const scaleX = imageView.naturalWidth / imageView.offsetWidth;
-//         const scaleY = imageView.naturalHeight / imageView.offsetHeight;
-
-//         const relativeX = coordinates.x * scaleX;
-//         const relativeY = coordinates.y * scaleY;
-//         const relativeWidth = Math.min(
-//           coordinates.width * scaleX,
-//           imageView.naturalWidth - relativeX
-//         );
-//         const relativeHeight = Math.min(
-//           coordinates.height * scaleY,
-//           imageView.naturalHeight - relativeY
-//         );
-
-//         const existingCanvas = document.querySelector(".highlight-canvas");
-//         if (existingCanvas) {
-//           existingCanvas.parentNode.removeChild(existingCanvas);
-//         }
-
-//         const canvas = document.createElement("canvas");
-//         const ctx = canvas.getContext("2d");
-        
-//         canvas.width = imageWidth;
-//         canvas.height = imageHeight;
-//         canvas.classList.add("highlight-canvas");
-
-//         ctx.fillStyle = "rgba(4, 132, 9, 0.1)"; 
-//         ctx.strokeStyle = "rgba(4, 132, 9, 0.8)"; 
-//         ctx.strokeRect(relativeX, relativeY, relativeWidth, relativeHeight);
-//         ctx.fillRect(relativeX, relativeY, relativeWidth, relativeHeight);
-
-//         canvas.style.position = "absolute";
-//         canvas.style.top = "0";
-//         canvas.style.left = "0";
-//         canvas.style.zIndex = "2";
-//         imageContainer.appendChild(canvas);
-
-//         setTimeout(() => {
-//           canvas.classList.add("show"); // Add 'show' class to trigger transition
-//           setTimeout(() => {
-//             if (canvas.parentNode === imageContainer) {
-//               imageContainer.removeChild(canvas);
-//             }
-//           }, 500); // Wait for transition to finish before removing the canvas
-//         }, 1500);
-//       }
-//     }
-  
-//     document
-//       .getElementById("imageView")
-//       .addEventListener("click", highlightImageArea);
-
-//     function getCoordinatesForInputId(inputId, imageDetails) {
-//       const imageDetail = imageDetails.find((detail) => detail.id === inputId);
-//       return imageDetail ? imageDetail.value : null;
-//     }
-//   })
-//   .catch((error) => console.error("Error fetching data:", error));
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   fetchData();
 });
 
-function fetchData() {
-  fetch(`http://172.16.12.21:8000/test/invoice_data?invoice_file_id=3&page=1`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      const pageData = data[0];
-      const imageDimensions = pageData.image_dimensions;
-      const content = pageData.content;
+let currentPage = 1;
+let totalPages = 0;
 
-      const coOrdinatesForImage = {};
+function fetchData(page) {
+  fetch(
+    `http://172.16.12.21:8000/test/invoice_data?invoice_file_id=1&page=${
+      page || 1
+    }`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      const pageData = data?.ocr_result;
+      const imageDimensions = pageData?.image_dimensions;
+      const content = pageData?.content;
+      totalPages = data.invoice_file_path.length;
+      const imageWidth = imageDimensions ? imageDimensions[0] : 0;
+      const imageHeight = imageDimensions ? imageDimensions[1] : 0;
+      const items = data?.ocr_result?.content?.items;
 
       const inputs = document.querySelectorAll("input[id]");
-      inputs.forEach((input, i) => {
+      inputs.forEach((input) => {
         const key = input.id;
         const field = content[key];
         if (field) {
-          const idToFind = field.id;
-          const matchingField = Object.values(content).find(field => field.id === idToFind);
-          if (matchingField) {
-            input.value = matchingField.value;
-          }
-          input.addEventListener("click", highlightImageArea);
+          input.value = field.value;
+          input.dataset.bbox = JSON.stringify(field.bbox);
+          input.addEventListener("click", highlightImageAreaWithTimeout);
         }
       });
 
-      function highlightImageArea(event) {
-        const inputId = event.target.id;
+      if (items && items.length > 0) {
+        items.forEach((item, index) => {
+          const itemIdPrefix = `item_${index + 1}_`;
+          for (const key in item) {
+            if (item.hasOwnProperty(key)) {
+              const inputId = `${itemIdPrefix}${key}`;
+              const inputElement = document.getElementById(inputId);
+              if (inputElement) {
+                inputElement.value = item[key].value;
+              }
+            }
+          }
+        });
+      }
+
+      let boundingBoxesVisible = false;
+
+      const highlightAllBoundingBoxes = () => {
+        if (boundingBoxesVisible) {
+          removeBoundingBoxes();
+          boundingBoxesVisible = false;
+        } else {
+          inputs.forEach((input) => {
+            const bbox = input.dataset.bbox;
+            if (bbox) {
+              highlightImageArea({ target: input }, false);
+            }
+          });
+          boundingBoxesVisible = true;
+        }
+      };
+
+      function highlightImageAreaWithTimeout(event) {
+        highlightImageArea(event, true);
+      }
+
+      function highlightImageArea(event, applyTimeout) {
+        const input = event.target;
+        const bbox = input.dataset.bbox;
 
         const imageView = document.getElementById("imageView");
         const imageContainer = document.querySelector(".image-container");
-        const field = content[inputId];
 
-        if (field) {
-          const [x, y, w, h] = field.bbox.map((coord, idx) => coord * (idx < 2 ? 1 : (idx % 2 === 0 ? imageView.offsetWidth : imageView.offsetHeight)));
+        const bboxObj = JSON.parse(bbox);
 
-          const existingCanvas = document.querySelector(`.highlight-canvas-${inputId}`);
-          if (existingCanvas) {
-            existingCanvas.parentNode.removeChild(existingCanvas);
-          }
+        const x = bboxObj.x;
+        const y = bboxObj.y;
+        const w = bboxObj.w;
+        const h = bboxObj.h;
 
-          const canvas = document.createElement("canvas");
-          const ctx = canvas.getContext("2d");
-          
-          canvas.width = imageView.offsetWidth;
-          canvas.height = imageView.offsetHeight;
-          canvas.classList.add(`highlight-canvas-${inputId}`);
+        const existingCanvas = document.querySelector(
+          `.highlight-canvas-${input.id}`
+        );
+        if (existingCanvas) {
+          existingCanvas.parentNode.removeChild(existingCanvas);
+        }
 
-          ctx.fillStyle = "rgba(4, 132, 9, 0.1)"; 
-          ctx.strokeStyle = "rgba(4, 132, 9, 0.8)"; 
-          ctx.strokeRect(x, y, w, h);
-          ctx.fillRect(x, y, w, h);
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
 
-          canvas.style.position = "absolute";
-          canvas.style.top = "0";
-          canvas.style.left = "0";
-          canvas.style.zIndex = "2";
-          imageContainer.appendChild(canvas);
+        canvas.width = imageWidth;
+        canvas.height = imageHeight;
+        canvas.classList.add(`highlight-canvas-${input.id}`);
 
+        ctx.fillStyle = "rgba(4, 132, 9, 0.1)";
+        ctx.strokeStyle = "rgba(4, 132, 9, 0.8)";
+        ctx.strokeRect(x, y, w, h);
+        ctx.fillRect(x, y, w, h);
+
+        canvas.style.position = "absolute";
+        canvas.style.top = "0";
+        canvas.style.left = "0";
+        canvas.style.zIndex = "2";
+
+        imageContainer.appendChild(canvas);
+
+        canvas.addEventListener("click", () => {
+          const targetInput = document.getElementById(input.id);
+          targetInput.focus();
+        });
+
+        if (applyTimeout) {
           setTimeout(() => {
-            canvas.classList.add("show"); // Add 'show' class to trigger transition
+            canvas.classList.add("show");
             setTimeout(() => {
               if (canvas.parentNode === imageContainer) {
                 imageContainer.removeChild(canvas);
               }
-            }, 500); // Wait for transition to finish before removing the canvas
+            }, 500);
           }, 1500);
         }
       }
+      function removeBoundingBoxes() {
+        const highlightCanvases = document.querySelectorAll(
+          "[class^='highlight-canvas-']"
+        );
+        highlightCanvases.forEach((canvas) => {
+          canvas.parentNode.removeChild(canvas);
+        });
+      }
+      const button = document.querySelector(".side-buttons");
+      button.addEventListener("click", highlightAllBoundingBoxes);
     })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-      // You can display a message or perform any other action here to notify the user of the error
+    .catch((error) => {
+      console.error("Error fetching data:", error);
     });
 }
 
-
-// submit Form Functionality
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  fetchData();
-
-  const submitButton = document.querySelector(".submitform-btn");
-  console.log(submitButton); // Debugging: Check if submit button is correctly selected
-  submitButton.addEventListener("click", submitForm);
+document.getElementById("next-page").addEventListener("click", () => {
+  if (currentPage < totalPages) {
+    currentPage++;
+    fetchData(currentPage);
+  }
 });
 
-function submitForm() {
-  console.log("Submit button clicked"); // Debugging: Check if submitForm function is being called
-  const inputs = document.querySelectorAll("input[id]");
-  const updatedData = {};
+// Function to handle click on the previous button
+document.getElementById("prev-page").addEventListener("click", () => {
+  if (currentPage > 1) {
+    currentPage--;
+    fetchData(currentPage);
+  }
+});
 
-  inputs.forEach(input => {
-    const key = input.id;
-    const value = input.value;
-    updatedData[key] = value;
-  });
+// ***** submit Form Functionality ******
+document.addEventListener("DOMContentLoaded", () => {
+  const button = document.querySelector(".form-submit");
+  button.addEventListener("click", () => {
+    const changedData = {};
 
-  console.log("Updated data:", updatedData); // Debugging: Check the updated data
+    const inputFields = document.querySelectorAll("input[id]");
+    inputFields.forEach((input) => {
+      const id = input.id;
+      const value = input.value.trim();
 
-  sendData(updatedData);
-}
+      if (value !== "") {
+        changedData[id] = value;
+      }
+    });
 
-function sendData(data) {
-  console.log("Sending data:", data); // Debugging: Check if sendData function is being called
-  fetch(`http://172.16.12.21:8000/test/submit_data`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+    if (Object.keys(changedData).length === 0) {
+      console.log("No input value has been changed.");
+      return;
     }
-    return response.json();
-  })
-  .then(responseData => {
-    // Handle successful response from the server
-    console.log("Data submitted successfully:", responseData);
-  })
-  .catch(error => {
-    console.error('Error submitting data:', error);
-    // You can display a message or perform any other action here to notify the user of the error
-  });
-}
+    const invoiceFileId = 1;
 
-// Image render functionality
+    fetch("http://172.16.12.21:8000/test/invoice_data", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        page : currentPage,
+        invoice_model_id: invoiceFileId,
+        corrected_results: changedData,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Data submitted successfully");
+        } else {
+          console.error("Failed to submit data");
+        }
+      })
+      .catch((error) => {
+        console.error("Error submitting data:", error);
+      });
+  });
+});
+
+//***** Image render functionality *****
 
 const images = ["page-0001.jpg"];
 
@@ -287,132 +248,61 @@ function drag(event) {
   });
 }
 
-
-
-// Zoom In Zoom OUT Image functionality
-
-document.addEventListener('DOMContentLoaded', function() {
-  const imageContainer = document.getElementById('imageContainer');
-  const imageView = document.getElementById('imageView');
-  const zoomInButton = document.getElementById('zoomIn');
-  const zoomOutButton = document.getElementById('zoomOut');
+document.addEventListener("DOMContentLoaded", function () {
+  const imageView = document.getElementById("imageView");
+  const zoomInButton = document.getElementById("zoomIn");
+  const zoomOutButton = document.getElementById("zoomOut");
+  const imageContainer = document.querySelector(".image-container");
 
   let scaleFactor = 1;
-  let isDragging = false;
+  let isScrolling = false;
   let startX, startScrollLeft;
 
-  // Zoom in functionality
-  zoomInButton.addEventListener('click', function() {
-      scaleFactor += 0.1;
-      updateImageSize();
-      imageView.classList.add('draggable'); // Add class to indicate draggability
-      // Change cursor to grab
-      zoomInButton.style.cursor = "grab";
-      zoomOutButton.style.cursor = "grab";
+  zoomInButton.addEventListener("click", function () {
+    scaleFactor += 0.1;
+    updateImageSize();
   });
 
-  // Zoom out functionality
-  zoomOutButton.addEventListener('click', function() {
+  zoomOutButton.addEventListener("click", function () {
+    if (scaleFactor > 1) {
       scaleFactor -= 0.1;
       updateImageSize();
-      imageView.classList.add('draggable'); // Add class to indicate draggability
-      // Change cursor to grab
-      zoomInButton.style.cursor = "grab";
-      zoomOutButton.style.cursor = "grab";
+    }
   });
 
-  // Function to update image size based on scale factor
   function updateImageSize() {
-      imageView.style.transform = `scale(${scaleFactor})`;
+    scaleFactor = Math.max(1, scaleFactor);
+
+    imageView.style.transform = `scale(${scaleFactor})`;
+
+    if (scaleFactor > 1) {
+      imageContainer.classList.add("zoomed-in");
+      imageContainer.addEventListener("mousedown", startScrolling);
+    } else {
+      imageContainer.classList.remove("zoomed-in");
+      imageContainer.removeEventListener("mousedown", startScrolling);
+    }
   }
 
-  // Mouse down event listener
-  imageView.addEventListener('mousedown', function(e) {
-      isDragging = true;
-      startX = e.clientX;
-      startScrollLeft = imageView.scrollLeft;
-      imageView.classList.add('dragging'); // Add class to indicate dragging
-      e.preventDefault(); // Prevent default behavior (e.g., text selection)
-  });
+  function startScrolling(e) {
+    isScrolling = true;
+    startX = e.clientX;
+    startScrollLeft = imageContainer.scrollLeft;
+    e.preventDefault();
+    document.addEventListener("mousemove", handleScrolling);
+    document.addEventListener("mouseup", stopScrolling);
+  }
 
-  // Mouse move event listener
-  document.addEventListener('mousemove', function(e) {
-      if (isDragging) {
-          let deltaX = e.clientX - startX;
-          imageView.scrollLeft = startScrollLeft - deltaX;
-      }
-  });
+  function handleScrolling(e) {
+    if (isScrolling) {
+      let deltaX = e.clientX - startX;
+      imageContainer.scrollLeft = startScrollLeft - deltaX;
+    }
+  }
 
-  // Mouse up event listener
-  document.addEventListener('mouseup', function() {
-      isDragging = false;
-      imageView.classList.remove('dragging'); // Remove dragging class
-      // Change cursor back to pointer
-      zoomInButton.style.cursor = "pointer";
-      zoomOutButton.style.cursor = "pointer";
-  });
+  function stopScrolling() {
+    isScrolling = false;
+    document.removeEventListener("mousemove", handleScrolling);
+    document.removeEventListener("mouseup", stopScrolling);
+  }
 });
-
-// Get all input fields in the form
-
-// const inputFields = document.querySelectorAll(".form input");
-
-// inputFields.forEach((input) => {
-//   input.addEventListener("click", highlightImageArea);
-// });
-
-// function highlightImageArea(event) {
-//   const inputId = event.target.id;
-
-//   const imageView = document.getElementById("imageView");
-//   const imageContainer = document.querySelector(".image-container");
-//   const rect = imageView.getBoundingClientRect();
-//   const coordinates = getCoordinatesForInputId(inputId);
-
-//   const scaleX = imageView.naturalWidth / imageView.offsetWidth;
-//   const scaleY = imageView.naturalHeight / imageView.offsetHeight;
-
-//   const relativeX = coordinates.x * scaleX;
-//   const relativeY = coordinates.y * scaleY;
-//   const relativeWidth = coordinates.width * scaleX;
-//   const relativeHeight = coordinates.height * scaleY;
-
-//   const existingCanvas = document.querySelector(".highlight-canvas");
-//   if (existingCanvas) {
-//     existingCanvas.parentNode.removeChild(existingCanvas);
-//   }
-
-//   const canvas = document.createElement("canvas");
-//   const ctx = canvas.getContext("2d");
-//   canvas.width = imageContainer.offsetWidth;
-//   canvas.height = imageContainer.offsetHeight;
-//   canvas.classList.add("highlight-canvas");
-//   canvas.style.backgroundColor =
-//     getComputedStyle(imageContainer).backgroundColor;
-
-//   ctx.strokeStyle = "red";
-
-//   ctx.strokeRect(relativeX, relativeY, relativeWidth, relativeHeight);
-
-//   canvas.style.position = "absolute";
-//   canvas.style.top = "0";
-//   canvas.style.left = "0";
-//   canvas.style.zIndex = "100";
-
-//   imageContainer.appendChild(canvas);
-//   setTimeout(() => {
-//     if (canvas.parentNode === imageContainer) {
-//       imageContainer.removeChild(canvas);
-//     }
-//   }, 2000);
-// }
-
-// function getCoordinatesForInputId(inputId) {
-
-//   return {
-//     x: 110,
-//     y: 350,
-//     width: 140,
-//     height: 50,
-//   };
-// }
